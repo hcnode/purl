@@ -49,7 +49,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*!
+	/* WEBPACK VAR INJECTION */(function(global) {/*!
 	 * purl
 	 * Copyright (c) 2015 intuitivcloud Systems <engineering@intuitivcloud.com>
 	 * BSD-3-Clause Licensed
@@ -68,7 +68,7 @@
 	 * @return {Object} an object containing the components extracted from the specified
 	 *                  URL
 	 */
-	module.exports = function purl(urlToParse) {
+	function purl(urlToParse) {
 	  var m = pathRex.exec(urlToParse),
 	      i = 1;
 
@@ -87,9 +87,12 @@
 	    search: m[i++],
 	    hash: m[i++]
 	  };
-	};
+	}
+
+	module.exports = ((global || window).purl = purl);
 
 
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
 /******/ ]);
