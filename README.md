@@ -19,8 +19,10 @@ $ npm install purl
 Copy the file `purl.min.js` in the `dist` folder and refer to it in your HTML:
 
 ```html
-<script src="/js/purl.min.js'></script>
+<script src="/js/purl.min.js"></script>
 ```
+
+`purl` will now be available via `window.purl`.
 
 ## Usage
 
@@ -29,16 +31,16 @@ Copy the file `purl.min.js` in the `dist` folder and refer to it in your HTML:
 ```js
 var url = purl('http://user:pass@www.example.com:8000/foo/bar?st=1&lt=10;#/koo9');
 
-url.origin      // 'http://www.example.com:8000'
-url.protocol    // 'http:'
-url.username    // 'user'
-url.password    // 'pass'
-url.host        // 'www.example.com:8000'
-url.hostname    // 'www.example.com'
-url.port        // '8000'
-url.pathname    // '/foo/bar'
-url.search      // 'st=1&lt=10;'
-url.hash        // '/koo9'
+url.origin;      // => 'http://www.example.com:8000'
+url.protocol;    // => 'http:'
+url.username;    // => 'user'
+url.password;    // => 'pass'
+url.host;        // => 'www.example.com:8000'
+url.hostname;    // => 'www.example.com'
+url.port;        // => '8000'
+url.pathname;    // => '/foo/bar'
+url.search;      // => 'st=1&lt=10;'
+url.hash;        // => '/koo9'
 ```
 
 ### Path Example
@@ -46,9 +48,9 @@ url.hash        // '/koo9'
 ```js
 var p = purl('/foo/bar?st=1&lt=10;/koo9');
 
-p.pathname    // '/foo/bar'
-p.search      // 'st=1&lt=10;'
-p.hash        // '/koo9'
+p.pathname;    // => '/foo/bar'
+p.search;      // => 'st=1&lt=10;'
+p.hash;        // => '/koo9'
 ```
 
 ## License
