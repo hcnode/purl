@@ -17,7 +17,7 @@ var pathRex = /(([\w\.\-\+]+:)\/{2}(([\w\d\.]+):([\w\d\.]+))?@?(([a-zA-Z0-9\.\-_
  * @return {Object} an object containing the components extracted from the specified
  *                  URL
  */
-function purl(urlToParse) {
+module.exports = function purl(urlToParse) {
   var m = pathRex.exec(urlToParse),
       i = 1;
 
@@ -36,7 +36,5 @@ function purl(urlToParse) {
     search: m[i++],
     hash: m[i++]
   };
-}
-
-module.exports = ((global || window).purl = purl);
+};
 
