@@ -24,7 +24,9 @@ module.exports = [
     entry: './index.js',
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: 'purl.js'
+      filename: 'purl.js',
+      library: 'purl',
+      libraryTarget: 'var'
     },
     target: 'web',
     cache: false,
@@ -36,7 +38,9 @@ module.exports = [
     entry: './index.js',
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: 'purl.min.js'
+      filename: 'purl.min.js',
+      library: 'purl',
+      libraryTarget: 'var'
     },
     target: 'web',
     cache: false,
