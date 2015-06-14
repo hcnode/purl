@@ -23,15 +23,9 @@ gulp.task('lint', function () {
     .pipe(t.eslint.format());
 });
 
-gulp.task('test', function (done) {
-  gulp.src(paths.TEST_PATH)
-    .on('end', done)
-    .pipe(t.mocha({reporter: 'spec'}));
-});
-
-gulp.task('build-dist', function () {
+gulp.task('build-dist', ['lint'], function (done) {
   webpack(require('./webpack.config'), function (err, stats) {
-    if (err) throw new t.util.PluginError('webpack', err);
+    if (err) done(new t.util.PluginError('webpack', err));
     t.util.log('[webpack]', stats.toString({
       assets: true,
       modules: true,
@@ -39,12 +33,18 @@ gulp.task('build-dist', function () {
       reasons: true,
       colors: true
     }));
+    done();
   });
 });
 
-gulp.task('watch', function () {
-  gulp.watch(paths.SRC_PATH.concat(paths.TEST_PATH), ['lint', 'test', 'build-dist']);
+gulp.task('test', ['build-dist'], function () {
+  gulp.src(paths.TEST_PATH)
+    .pipe(t.mocha({reporter: 'spec'}));
 });
 
-gulp.task('default', ['lint', 'test', 'build-dist', 'watch']);
-gulp.task('build', ['lint', 'test', 'build-dist']);
+gulp.task('watch', function () {
+  gulp.watch(paths.SRC_PATH.concat(paths.TEST_PATH), ['lint', 'build-dist', 'test']);
+});
+
+gulp.task('default', ['lint', 'build-dist', 'test', 'watch']);
+gulp.task('build', ['lint', 'build-dist', 'test']);
