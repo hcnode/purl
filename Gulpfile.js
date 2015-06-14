@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 var t = require('gulp-load-plugins')({ scope: 'devDependencies' }),
     paths = {
       SRC_PATH: ['./index.js', './lib/**/*.js', './Gulpfile.js', './webpack.config.js'],
-      TEST_PATH: ['./tests/**/*.tests.js'],
+      TEST_PATH: ['./tests.js'],
       LIB_PATH: './lib'
     };
 

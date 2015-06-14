@@ -2,7 +2,7 @@
 'use strict';
 
 var expect = require('expect.js'),
-    purl = require('../');
+    purl = require('./');
 
 describe('purl', function () {
 
