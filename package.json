@@ -1,6 +1,6 @@
 {
   "name": "purl",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A minuscule library to parse URLs",
   "main": "index.js",
   "scripts": {
