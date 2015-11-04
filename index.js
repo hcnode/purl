@@ -18,23 +18,34 @@ var pathRex = /(([\w\.\-\+]+:)\/{2}(([\w\d\.]+):([\w\d\.]+))?@?(([a-zA-Z0-9\.\-_
  *                  URL
  */
 module.exports = function purl(urlToParse) {
-  var m = pathRex.exec(urlToParse),
-      i = 1;
+	var m = pathRex.exec(urlToParse),
+		i = 1;
 
-  if (!m) return {};
+	if (!m) return {};
 
-  return {
-    origin: m[i++],
-    protocol: m[i++],
-    userinfo: m[i++],
-    username: m[i++],
-    password: m[i++],
-    host: m[i++],
-    hostname: m[i++],
-    port: m[i++],
-    pathname: m[i++],
-    search: m[i++],
-    hash: m[i++]
-  };
+	return {
+		origin: m[i++],
+		protocol: m[i++],
+		userinfo: m[i++],
+		username: m[i++],
+		password: m[i++],
+		host: m[i++],
+		hostname: m[i++],
+		port: m[i++],
+		pathname: m[i++],
+		search: m[i++],
+		hash: m[i++],
+		query: function (param) {
+			var search = m[10];
+			var params = search.split('&');
+
+			for (var i = 0; i < params.length; i++) {
+				var pair = params[i].split('=');
+				if (pair[0] === param) {
+					return pair[1];
+				}
+			}
+		}
+	};
 };
 
